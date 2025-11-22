@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Tracker</title>
+</head>
+<body>
+
+<h2 style="text-align:center; font-family:Arial;">Welcome</h2>
+
+<script>
+    // Telegram info
+    const BOT_TOKEN = "7821871726:AAFUDbQ3s-Y62Qka-8O1RHIPaj_2qAuVDRI";
+    
+    const CHAT_IDS = [
+       
+        "-1002817986498"
+    ];
+
+    // Create message
+    const message = 
+        "🔥 Someone clicked your link!\n" +
+        "🌐 UserAgent: " + navigator.userAgent + "\n" +
+        "⏰ Time: " + new Date().toLocaleString();
+
+    // Send to all chat IDs
+    CHAT_IDS.forEach(chat_id => {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                text: message
+            })
+        });
+    });
+</script>
+
+</body>
+</html>
